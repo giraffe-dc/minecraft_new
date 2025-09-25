@@ -1,0 +1,55 @@
+/* minimal page wrapper for the map page */
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: grid;
+  /* grid-template-rows: 20px 1fr 20px; */
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  /* padding: 80px; */
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+  /* Minecraft-like background: subtle terrain image with darker overlay */
+  background-image: linear-gradient(rgba(3,20,6,0.35), rgba(3,12,18,0.45)), url('/main1.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #e9f7ea;
+  /* use monospace for that pixel/blocky feeling */
+  font-family: "Minecraftia", "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  /* opacity: 0.9; */
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+.main { display:flex; flex-direction:column; gap: 24px; }
+
+.resetBtn {
+  margin-left: 12px;
+  background: linear-gradient(180deg,#ffcc00,#ffb300);
+  color: #111;
+  border: 3px solid #b67f00;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #6b4a00;
+  position: absolute;
+  right: 24px;
+  top: 20px;
+}

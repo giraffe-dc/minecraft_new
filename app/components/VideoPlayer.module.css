@@ -1,0 +1,39 @@
+.videoContainer {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 640px;
+    border: 6px solid #2f2b28;
+    border-radius: 10px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+    overflow: hidden; /* To keep the video within the rounded corners */
+}
+
+.videoPlayer {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.playlist {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.track {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.track:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.activeTrack {
+    background: rgba(46, 204, 113, 0.3);
+    font-weight: bold;
+}
