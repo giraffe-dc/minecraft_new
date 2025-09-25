@@ -40,7 +40,7 @@ const islandDetails: Record<string, IslandDetail> = {
   island3: {
     title: '🏜️ Закинута шахта: «БУДІВНИЦТВО ФОРТЕЦІ»',
     hero: 'brave',
-    video: ['fonTetris1.mp4', 'TetrisG.mp4'], // Added video
+    video: ['fonTetris_v2.mp4', 'Tetris_v2.mp4'], // Added video
     
   },
   island4: {
