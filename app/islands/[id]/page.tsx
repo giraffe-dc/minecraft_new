@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from './IslandPage.module.css';
@@ -40,7 +39,7 @@ const islandDetails: Record<string, IslandDetail> = {
   island3: {
     title: '🏜️ Закинута шахта: «БУДІВНИЦТВО ФОРТЕЦІ»',
     hero: 'brave',
-    video: ['fonTetris_v2.mp4', 'Tetris_v2.mp4'], // Added video
+    video: ['fonTetris_v2.mp4', 'Tetris_v2.mp4','Терновий Валентин - Полька.mp3','game-gaming-minecraft.mp3'], // Added video
     
   },
   island4: {
@@ -101,11 +100,29 @@ export default function IslandPage({ params }: { params: { id: string } }) {
         const audio = new Audio('/style.mp3');
         audio.play();
 
-        if (newCompleted.length === Object.keys(islandDetails).length) {
+        // Закриваємо модалку після закінчення музики
+        audio.onended = () => {
+            setIsModalOpen(false);
+            router.push('/map')
+            // Якщо всі острови пройдені, переходимо на фінальну сторінку
+            if (newCompleted.length === Object.keys(islandDetails).length) {
+                setTimeout(() => {
+                    router.push('/final');
+                }, 500);
+            }
+        };
+
+        // Fallback на випадок, якщо onended не спрацює
+        audio.onerror = () => {
             setTimeout(() => {
-                router.push('/final');
-            }, 2000);
-        }
+                setIsModalOpen(false);
+                if (newCompleted.length === Object.keys(islandDetails).length) {
+                    setTimeout(() => {
+                        router.push('/final');
+                    }, 500);
+                }
+            }, 3000); // 3 секунди fallback
+        };
     };
 
     const islandStyle = styles[islandId as keyof typeof styles];
@@ -150,10 +167,44 @@ export default function IslandPage({ params }: { params: { id: string } }) {
                 </div>
             </div>
 
-            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <h2 style={{textAlign: 'center'}}>Завдання виконано!</h2>
-                <p style={{textAlign: 'center'}}>Ви знайшли нового друга!</p>
-                <Image src={`/${island.hero}.jpg`} alt={island.hero} width={400} height={400} style={{ margin: 'auto', display: 'block' }} />
+            <Modal 
+                open={isModalOpen} 
+                backgroundVideo={island.hero}
+            >
+                <div style={{
+                    padding: '60px 40px',
+                    textAlign: 'center',
+                    color: 'white',
+                    textShadow: '3px 3px 6px rgba(0,0,0,0.9)',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'end',
+                    alignItems: 'end',
+                    // background: 'rgba(0,0,0,0.4)'
+                }}>
+                    {/* <h2 style={{ 
+                        marginBottom: '40px', 
+                        fontSize: 'clamp(24px, 5vh, 42px)', 
+                        fontWeight: 'bold',
+                        fontFamily: 'var(--font-press), monospace',
+                        letterSpacing: '3px',
+                        textTransform: 'uppercase',
+                        lineHeight: '1.2'
+                    }}>
+                        Завдання виконано!
+                    </h2> */}
+                    <p style={{ 
+                        fontSize: 'clamp(10px, 4vh, 8px)', 
+                        marginBottom: '50px',
+                        fontFamily: 'var(--font-press), monospace',
+                        letterSpacing: '2px',
+                        lineHeight: '1.3'
+                    }}>
+                        Ви знайшли нового друга!
+                    </p>
+                   
+                </div>
             </Modal>
         </>
     );

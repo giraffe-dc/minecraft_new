@@ -36,7 +36,7 @@ export default function Home() {
         // do not loop: we want to detect when music ends
         bgRef.current.loop = false;
         bgRef.current.preload = 'auto';
-        bgRef.current.volume = 0.35;
+        bgRef.current.volume = 0.55;
         bgRef.current.onended = () => {
           setBgEnded(true);
           localStorage.setItem('creeper_entered','1'); 
