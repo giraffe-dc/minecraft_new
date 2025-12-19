@@ -26,7 +26,8 @@ const islandDetails: Record<string, IslandDetail> = {
   island1: {
     title: 'Джунглі: «ПАРКУР КРІПЕРА»',
     hero: 'spark',
-    
+       music: ['junli.mp3','juncli2.mp3'], // Added music
+
        
   },
   island2: {
@@ -52,7 +53,7 @@ const islandDetails: Record<string, IslandDetail> = {
   island5: {
     title: ' Болото: «КВЕСТ ПАМ’ЯТІ»',
     hero: 'peace',
-    music: ['chek.mp3'], // Added music
+    music: ['chek.mp3','game-gaming-minecraft.mp3'], // Added music
   },
   island6: {
     title: '❄️Печери: «ПЕРЕДБАЧЕННЯ З ПЕЧЕР»',
